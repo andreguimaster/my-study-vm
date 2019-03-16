@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
 	
 	config.vm.define :web do |web_config|
 		web_config.vm.network "forwarded_port", guest: 8080, host: 8081
-		web_config.vm.provision "shell", inline: "sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get install -y puppet"
+		web_config.vm.provision "shell", inline: "sudo apt-get update && sudo apt-get install -y puppet"
 		
 		web_config.vm.provision "puppet" do |puppet|
 			puppet.manifest_file = "web.pp"
