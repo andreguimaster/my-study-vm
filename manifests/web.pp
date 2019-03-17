@@ -1,13 +1,13 @@
 exec { "apt-update":
-  command => "/usr/bin/apt-get update"
+  command => "/usr/bin/apt-get -y update"
 }
 
-package { ["ubuntu-desktop"]:
+package { ["ubuntu-gnome-desktop"]:
     ensure => present,
     require => Exec["apt-update"]
 }
 
-package { ["virtualbox-guest-utils","virtualbox-guest-dkms"]:
+package { ["ubuntu-restricted-extras"]:
     ensure => present,
-    require => Package["ubuntu-desktop"]
+    require => Exec["apt-update"]
 }
